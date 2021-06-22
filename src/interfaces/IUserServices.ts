@@ -1,5 +1,6 @@
+import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { User } from "../entities/User";
 
 export interface IUserInterface {
-  execute({ name, email, admin }: User): Promise<User>;
+  execute({ name, email, admin }: ICreateUserDTO): Promise<User>;
 }
