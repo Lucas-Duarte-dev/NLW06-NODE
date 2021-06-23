@@ -1,11 +1,10 @@
 import { getCustomRepository } from "typeorm";
-import { ICreateTagDTO } from "../dtos/ICreateTagDTO";
 import { Tag } from "../entities/Tag";
 import { ITagServices } from "../interfaces/ITagServices";
 import { TagRepositories } from "../repositories/TagRepositories";
 
 class CreateTagServices implements ITagServices {
-  async execute({ name }: ICreateTagDTO): Promise<Tag> {
+  async execute(name: string): Promise<Tag> {
     const tagsRepositories = getCustomRepository(TagRepositories);
 
     if (!name) {
@@ -25,3 +24,5 @@ class CreateTagServices implements ITagServices {
     return tag;
   }
 }
+
+export { CreateTagServices };
