@@ -4,7 +4,7 @@ import { User } from "../entities/User";
 import { IUserInterface } from "../interfaces/IUserServices";
 import { UserRepositories } from "../repositories/UserRepositories";
 
-class UserService implements IUserInterface {
+class CreateUserService implements IUserInterface {
   async execute({ name, email, admin }: ICreateUserDTO): Promise<User> {
     const userRepositories = getCustomRepository(UserRepositories);
 
@@ -30,4 +30,4 @@ class UserService implements IUserInterface {
   }
 }
 
-export { UserService };
+export { CreateUserService };
