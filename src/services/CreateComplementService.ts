@@ -27,9 +27,9 @@ class CreateComplementService implements ICreateComplementService {
     }
 
     const complement = complementRepository.create({
-      tag_id,
-      user_receiver,
       user_sender,
+      user_receiver,
+      tag_id,
       message,
     });
 

@@ -11,7 +11,7 @@ import { v4 as uuidV4 } from "uuid";
 import { Tag } from "./Tag";
 import { User } from "./User";
 
-@Entity("tags")
+@Entity("complements")
 class Complement {
   @PrimaryColumn()
   id: string;

@@ -8,9 +8,9 @@ class CreateComplementController {
     const createComplementService = new CreateComplementService();
 
     const complement = await createComplementService.execute({
-      tag_id,
-      user_receiver,
       user_sender,
+      user_receiver,
+      tag_id,
       message,
     });
 
