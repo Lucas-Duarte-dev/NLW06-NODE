@@ -4,18 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "typeorm": "tsnd ./node_modules/typeorm/cli.js"
+    "dev": "cross-env NODE_ENV=dev tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "typeorm": "cross-env NODE_ENV=dev tsnd ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.12",
     "@types/jsonwebtoken": "^8.5.2",
     "@types/node": "^15.12.4",
     "@types/uuid": "^8.3.0",
+    "cross-env": "^7.0.3",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.3.4"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
