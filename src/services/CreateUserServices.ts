@@ -10,7 +10,7 @@ class CreateUserService implements IUserInterface {
     name,
     email,
     password,
-    admin,
+    admin = true,
   }: ICreateUserDTO): Promise<User> {
     const userRepositories = getCustomRepository(UserRepositories);
 
