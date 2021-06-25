@@ -3,10 +3,12 @@ import { AuthenticateUserController } from "./controllers/AuthenticateUserContro
 import { CreateComplimentController } from "./controllers/CreateComplimentController";
 import { CreateTagController } from "./controllers/CreateTagController";
 import { CreateUserController } from "./controllers/CreateUserController";
+import { ListTagsController } from "./controllers/ListTagsController";
+import { ListUserController } from "./controllers/ListUserController";
+import { ListUserReceiveComplementsController } from "./controllers/ListUserReceiveComplementsController";
+import { ListUserSenderComplementsController } from "./controllers/ListUserSenderComplementsController";
 import { ensureAdmin } from "./middlewares/ensureAdmin";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
-import { ListUserReceiveComplementsService } from "./services/ListUserReceiveComplementsService";
-import { ListUserSenderComplementsService } from "./services/ListUserSenderComplementsService";
 
 const router = Router();
 
@@ -15,9 +17,11 @@ const createTagController = new CreateTagController();
 const authenticateUserController = new AuthenticateUserController();
 const createComplimentController = new CreateComplimentController();
 const listUserSenderComplementsController =
-  new ListUserSenderComplementsService();
+  new ListUserSenderComplementsController();
 const listUserReceiveComplementsController =
-  new ListUserReceiveComplementsService();
+  new ListUserReceiveComplementsController();
+const listTagsController = new ListTagsController();
+const listUserController = new ListUserController();
 
 router.post("/users", createUserController.handle);
 router.post(
@@ -36,13 +40,15 @@ router.post(
 router.get(
   "/users/compliments/receive",
   ensureAuthenticated,
-  listUserReceiveComplementsController.execute
+  listUserReceiveComplementsController.handle
 );
 
 router.get(
   "/users/compliments/sender",
   ensureAuthenticated,
-  listUserSenderComplementsController.execute
+  listUserSenderComplementsController.handle
 );
+router.get("/tags", ensureAuthenticated, listTagsController.handle);
+router.get("/users", ensureAuthenticated, listUserController.handle);
 
 export { router };
