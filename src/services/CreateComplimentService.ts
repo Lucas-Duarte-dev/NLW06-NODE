@@ -1,17 +1,17 @@
 import { getCustomRepository } from "typeorm";
-import { ICreateComplement } from "../dtos/ICreateComplement";
-import { Complement } from "../entities/Complement";
-import { ICreateComplementService } from "../interfaces/ICreateComplementService";
+import { ICreateCompliment } from "../dtos/ICreateCompliment";
+import { Compliment } from "../entities/Compliment";
+import { ICreateComplimentService } from "../interfaces/ICreateComplimentService";
 import { ComplementRepositories } from "../repositories/ComplementRepositories";
 import { UserRepositories } from "../repositories/UserRepositories";
 
-class CreateComplementService implements ICreateComplementService {
+class CreateComplementService implements ICreateComplimentService {
   async execute({
     user_sender,
     user_receiver,
     tag_id,
     message,
-  }: ICreateComplement): Promise<Complement> {
+  }: ICreateCompliment): Promise<Compliment> {
     const complementRepository = getCustomRepository(ComplementRepositories);
 
     const userRepositories = getCustomRepository(UserRepositories);
