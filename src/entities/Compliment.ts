@@ -5,14 +5,13 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryColumn,
-  UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { Tag } from "./Tag";
 import { User } from "./User";
 
 @Entity("complements")
-class Complement {
+class Compliment {
   @PrimaryColumn()
   id: string;
 
@@ -50,4 +49,4 @@ class Complement {
   }
 }
 
-export { Complement };
+export { Compliment };

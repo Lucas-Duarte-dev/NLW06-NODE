@@ -1,4 +1,4 @@
-export interface ICreateComplement {
+export interface ICreateCompliment {
   user_sender: string;
 
   user_receiver: string;

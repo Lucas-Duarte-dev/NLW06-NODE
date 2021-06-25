@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class CreateComplements1624497040037 implements MigrationInterface {
-  protected table_name = "complements";
+  protected table_name = "compliments";
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
