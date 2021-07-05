@@ -7,6 +7,7 @@ import { ListTagsController } from "./controllers/ListTagsController";
 import { ListUserController } from "./controllers/ListUserController";
 import { ListUserReceiveComplementsController } from "./controllers/ListUserReceiveComplementsController";
 import { ListUserSenderComplementsController } from "./controllers/ListUserSenderComplementsController";
+import { RefreshTokenUserController } from "./controllers/RefreshTokenUserController";
 import { ensureAdmin } from "./middlewares/ensureAdmin";
 import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
@@ -22,6 +23,7 @@ const listUserReceiveComplementsController =
   new ListUserReceiveComplementsController();
 const listTagsController = new ListTagsController();
 const listUserController = new ListUserController();
+const refreshTokenUserController = new RefreshTokenUserController();
 
 router.post("/users", createUserController.handle);
 router.post(
@@ -48,7 +50,10 @@ router.get(
   ensureAuthenticated,
   listUserSenderComplementsController.handle
 );
+
 router.get("/tags", ensureAuthenticated, listTagsController.handle);
 router.get("/users", ensureAuthenticated, listUserController.handle);
+
+router.post("/refresh_token", refreshTokenUserController.handle);
 
 export { router };
