@@ -4,9 +4,10 @@ import { sign } from "jsonwebtoken";
 import { IAuthenticateUserDTO } from "../dtos/IAuthenticaUserDTO";
 import { IAuthenticateUserService } from "../interfaces/IAuthenticateUserServices";
 import { UserRepositories } from "../repositories/UserRepositories";
+import { GenerateRefreshToken } from "../provider/GenerateRefreshToken";
 
 class AuthenticateUserService implements IAuthenticateUserService {
-  async execute({ email, password }: IAuthenticateUserDTO): Promise<string> {
+  async execute({ email, password }: IAuthenticateUserDTO) {
     const usersRepository = getCustomRepository(UserRepositories);
 
     const user = await usersRepository.findOne({ email });
@@ -28,11 +29,15 @@ class AuthenticateUserService implements IAuthenticateUserService {
       process.env.SECRET_TOKEN,
       {
         subject: user.id,
-        expiresIn: "1d",
+        expiresIn: "20s",
       }
     );
 
-    return token;
+    const generateRefreshToken = new GenerateRefreshToken();
+
+    const refreshToken = await generateRefreshToken.execute(user.id);
+
+    return { token, refreshToken };
   }
 }
 
