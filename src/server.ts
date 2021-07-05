@@ -4,8 +4,12 @@ import express from "express";
 import "express-async-errors";
 
 import "./database";
+
 import { router } from "./router";
 import { verifyError } from "./errors/VerifyError";
+import cors from "cors";
+
+cors();
 
 const app = express();
 
