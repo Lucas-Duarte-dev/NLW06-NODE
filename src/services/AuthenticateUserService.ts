@@ -5,6 +5,7 @@ import { IAuthenticateUserDTO } from "../dtos/IAuthenticaUserDTO";
 import { IAuthenticateUserService } from "../interfaces/IAuthenticateUserServices";
 import { UserRepositories } from "../repositories/UserRepositories";
 import { GenerateRefreshToken } from "../provider/GenerateRefreshToken";
+import { GenerateTokenProvider } from "../provider/GenerateTokenProvider";
 
 class AuthenticateUserService implements IAuthenticateUserService {
   async execute({ email, password }: IAuthenticateUserDTO) {
@@ -22,16 +23,9 @@ class AuthenticateUserService implements IAuthenticateUserService {
       throw new Error("Credentials Incorrect");
     }
 
-    const token = sign(
-      {
-        email: user.email,
-      },
-      process.env.SECRET_TOKEN,
-      {
-        subject: user.id,
-        expiresIn: "20s",
-      }
-    );
+    const generateTokenProvider = new GenerateTokenProvider();
+
+    const token = await generateTokenProvider.execute(user.id);
 
     const generateRefreshToken = new GenerateRefreshToken();
 
