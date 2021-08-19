@@ -13,7 +13,7 @@ class RefreshToken {
   @JoinColumn({ name: "user_id" })
   @OneToOne(() => User)
   user: User;
-
+  
   @Column()
   expires_in: number;
 

@@ -31,7 +31,7 @@ export class RefreshToken1625524132738 implements MigrationInterface {
           },
         ],
       })
-    );
+    ); 
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
